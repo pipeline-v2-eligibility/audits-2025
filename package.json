@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "audit-backend": "jest --json --rootDir=backend --outputFile=backend/stats.json --noStackTrace --colors"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "jest": "^28.1.3"
+  }
+}
