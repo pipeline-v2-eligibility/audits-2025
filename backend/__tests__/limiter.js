@@ -3,6 +3,7 @@ const properties = require('../../../properties.json');
 
 let cases = [];
 let maybe = test.skip;
+jest.setTimeout(20000);
 
 const delay = ({until: timeout}) => new Promise((resolve) => {
     setTimeout(() => {
