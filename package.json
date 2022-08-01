@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "audit-backend": "jest --json --rootDir=backend --outputFile=backend/stats.json --noStackTrace --colors"
+    "audit-cloud": "jest --json --rootDir=cloud --outputFile=cloud/stats.json --noStackTrace --colors",
+    "audit-backend": "jest --json --rootDir=backend --outputFile=backend/stats.json --noStackTrace --colors",
+    "audit-frontend": "jest --json --rootDir=frontend --outputFile=frontend/stats.json --noStackTrace --colors"
   },
   "dependencies": {
     "axios": "^0.27.2",
