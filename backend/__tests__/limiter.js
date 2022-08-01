@@ -54,7 +54,6 @@ maybe('Backend API - Rate limiter allows calls within limit', async () => {
 });
 
 maybe('Backend API - Rate limiter flags too many calls', async () => {
-    console.log(cases.edges);
     const calls = cases.edges?.map(schedule => {
         return new Promise(async (resolve, reject) => {
             try {
