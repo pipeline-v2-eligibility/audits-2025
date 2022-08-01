@@ -1,5 +1,5 @@
 const axios = require('axios');
-const properties = process.CI === true ? require('../../properties.json') : {};
+const properties = process.CI === true ? require('../../../properties.json') : {};
 
 let cases = [];
 let maybe = test.skip;
