@@ -71,7 +71,6 @@ maybe('Backend API - Rate limiter flags too many calls', async () => {
         await Promise.all(calls);
     } catch (error) {
         if (error.response?.status) {
-            console.log('status', error.response?.status);
             expect(error.response?.status).toBe(429);
         }
         expect(error.response?.data?.error).toBeDefined();
