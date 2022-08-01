@@ -50,7 +50,6 @@ maybe('Backend API - Rate limiter allows calls within limit', async () => {
         }
     } catch (error) {
         // just warn of errors that should not be occuring
-        console.warn(error.message);
     }
 });
 

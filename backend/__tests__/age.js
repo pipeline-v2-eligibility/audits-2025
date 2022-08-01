@@ -42,7 +42,6 @@ maybe('Backend API - Calculates age', async () => {
             return Promise.resolve();
         } catch (error) {
             // just warn of errors that should not be occuring
-            console.warn(error.message);
         }
     }, Promise.resolve());
 });
