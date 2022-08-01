@@ -49,8 +49,9 @@ maybe('Backend API - Rate limiter allows calls within limit', async () => {
             expect(data.age).toBeGreaterThanOrEqual(0);
         }
     } catch (error) {
-        console.warn(error);
-        fail('Calling the API within the calls limit should not fail with any error');
+        console.warn('Calling the API within the calls limit should not fail', error);
+        // force test to fail
+        expect(error).to.not.toBeDefined();
     }
 });
 

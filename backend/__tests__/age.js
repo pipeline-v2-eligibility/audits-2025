@@ -41,7 +41,9 @@ maybe('Backend API - Calculates age', async () => {
             expect(data.age).toBe(age);
             return Promise.resolve();
         } catch (error) {
-            fail('calculating age (happy path) should not fail');
+            console.warn('calculating age correctly should not fail', error);
+            // force test to fail
+            expect(error).to.not.toBeDefined();
         }
     }, Promise.resolve());
 });
