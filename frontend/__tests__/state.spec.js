@@ -1,11 +1,19 @@
 // @ts-check
 const axios = require('axios');
 const { test, expect } = require('@playwright/test');
+const properties = require('../../../properties.json');
 
-const APP = 'https://62ebad07c81b9209f9aaa50d--subtle-pixie-92bf38.netlify.app/';
+let APP = '';
+let maybe = test.skip;
 const API = 'https://randomapi.com/api/8csrgnjw?key=LEIX-GF3O-AG7I-6J84';
 
-test('app has correct state on load', async ({ page }) => {
+if (properties && properties.deployedAppURL && properties.deployedAppURL !== '') {
+  maybe = test;
+  APP = properties.deployedAppURL;
+}
+
+
+maybe('app has correct state on load', async ({ page }) => {
   await page.goto(APP);
 
   const tRows = page.locator('tbody > tr');
@@ -27,7 +35,7 @@ test('app has correct state on load', async ({ page }) => {
   await expect(pageViewLabel).toHaveText('Showing Page 1');
 });
 
-test('app has correct state on forward nav', async ({ page }) => {
+maybe('app has correct state on forward nav', async ({ page }) => {
   await page.goto(APP);
 
   const tRows = page.locator('tbody > tr');
@@ -53,7 +61,7 @@ test('app has correct state on forward nav', async ({ page }) => {
   await expect(pageViewLabel).toHaveText('Showing Page 3');
 });
 
-test('app has correct state on backward nav', async ({ page }) => {
+maybe('app has correct state on backward nav', async ({ page }) => {
   await page.goto(APP);
 
   const tRows = page.locator('tbody > tr');

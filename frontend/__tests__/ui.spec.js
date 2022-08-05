@@ -1,9 +1,16 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
+const properties = require('../../../properties.json');
 
-const APP = 'https://62ebad07c81b9209f9aaa50d--subtle-pixie-92bf38.netlify.app/';
+let APP = '';
+let maybe = test.skip;
 
-test('app has required UI elements on load', async ({ page }) => {
+if (properties && properties.deployedAppURL && properties.deployedAppURL !== '') {
+  maybe = test;
+  APP = properties.deployedAppURL;
+}
+
+maybe('app has required UI elements on load', async ({ page }) => {
   await page.goto(APP);
 
   const tRows = page.locator('tbody > tr');
