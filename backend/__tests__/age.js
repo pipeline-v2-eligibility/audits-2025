@@ -11,9 +11,9 @@ const delay = ({until: timeout}) => new Promise((resolve) => {
     }, timeout);
 });
 
-if (properties && properties.apiBaseURL && properties.apiBaseURL !== '') {
+if (properties && properties.deployedAppURL && properties.deployedAppURL !== '') {
     maybe = test;
-    axios.defaults.baseURL = properties.apiBaseURL;
+    axios.defaults.baseURL = properties.deployedAppURL;
 }
 
 const getRandomTestData = async () => {
