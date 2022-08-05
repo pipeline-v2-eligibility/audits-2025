@@ -2,7 +2,8 @@
   "scripts": {
     "audit-cloud": "jest --runInBand --json --rootDir=cloud --outputFile=cloud/stats.json --noStackTrace --colors",
     "audit-backend": "jest --runInBand --json --rootDir=backend --outputFile=backend/stats.json --noStackTrace --colors",
-    "audit-frontend": "npx playwright test"
+    "audit-frontend": "npx playwright test",
+    "frontend-install-playwright": "npx playwright install --with-deps chromium"
   },
   "dependencies": {
     "axios": "^0.27.2",
