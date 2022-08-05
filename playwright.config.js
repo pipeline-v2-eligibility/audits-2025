@@ -54,6 +54,7 @@ const config = {
         ...devices['Desktop Chrome'],
       },
     }
+   ],
 };
 
 module.exports = config;
