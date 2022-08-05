@@ -2,10 +2,11 @@
   "scripts": {
     "audit-cloud": "jest --runInBand --json --rootDir=cloud --outputFile=cloud/stats.json --noStackTrace --colors",
     "audit-backend": "jest --runInBand --json --rootDir=backend --outputFile=backend/stats.json --noStackTrace --colors",
-    "audit-frontend": "jest --runInBand --json --rootDir=frontend --outputFile=frontend/stats.json --noStackTrace --colors"
+    "audit-frontend": "npx playwright test"
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "jest": "^28.1.3"
+    "jest": "^28.1.3",
+    "@playwright/test": "^1.24.2"
   }
 }
