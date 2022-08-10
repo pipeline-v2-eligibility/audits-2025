@@ -6,6 +6,7 @@
     "frontend-install-playwright": "npx playwright install --with-deps chromium"
   },
   "dependencies": {
+    "@octokit/rest": "^19.0.3",
     "@playwright/test": "^1.24.2",
     "axios": "^0.27.2",
     "fs.promises.exists": "^1.1.3",
