@@ -5,6 +5,11 @@ const properties = require('../../../properties.json');
 
 dotenv.config();
 
+// const properties = {
+//     githubUsername: process.env.githubUsername,
+//     deployedAppURL: process.env.deployedAppURL
+// };
+
 let repo;
 let owner;
 let octokit;
@@ -53,13 +58,6 @@ const listIssues = async () => {
 
 const testTheScanner = async (data) => {
     try {
-        // await octokit.request('POST /repos/{owner}/{repo}/issues', {
-        //     repo,
-        //     owner,
-        //     body: `${JSON.stringify(data)}`,
-        //     title: `${(new Date()).toUTCString()}`
-        // });
-
         await octokit.rest.issues.create({
             repo,
             owner,
