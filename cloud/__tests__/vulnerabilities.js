@@ -1,7 +1,9 @@
 const axios = require('axios');
+const dotenv = require('dotenv');
 const { Octokit } = require("@octokit/rest");
-const { expect } = require('@playwright/test');
 const properties = require('../../../properties.json');
+
+dotenv.config();
 
 let repo;
 let owner;
@@ -24,7 +26,7 @@ if (properties && properties.deployedAppURL && properties.deployedAppURL !== '' 
     repo = properties.deployedAppURL;
     owner = properties.githubUsername;
     octokit = new Octokit({
-        auth: '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'
+        auth: process.env.GH_TOKEN
     });
 }
 
@@ -51,11 +53,18 @@ const listIssues = async () => {
 
 const testTheScanner = async (data) => {
     try {
-        await octokit.request('POST /repos/{owner}/{repo}/issues', {
+        // await octokit.request('POST /repos/{owner}/{repo}/issues', {
+        //     repo,
+        //     owner,
+        //     body: `${JSON.stringify(data)}`,
+        //     title: `${(new Date()).toUTCString()}`
+        // });
+
+        await octokit.rest.issues.create({
             repo,
             owner,
-            title: `${(new Date()).toUTCString()}`,
-            body: `${JSON.stringify(data)}`
+            body: `${JSON.stringify(data)}`,
+            title: `${(new Date()).toUTCString()}`
         });
     
         // wait 45 seconds
@@ -90,7 +99,6 @@ const testTheScanner = async (data) => {
 
 maybe('GitHub Workflow - Scan identifies safe images', async () => {
     const data = cases.safe;
-    console.log('data', data);
     const scanResultComment = await testTheScanner(data);
     expect(scanResultComment).toBeDefined();
     expect(scanResultComment.body).toBeDefined();
@@ -106,29 +114,25 @@ maybe('GitHub Workflow - Scan identifies safe images', async () => {
             }
         }
     });
-    
 });
 
 // maybe('GitHub Workflow - Scan identifies unsafe images', async () => {
-    
-//     await octokit.request(`POST /repos/{${owner}}/{${repo}}/issues`, {
-//         owner: owner,
-//         repo: repo,
-//         title: `Scan @ ${(new Date()).toUTCString()}`,
-//         body: JSON.stringify(cases.unsafe)
+//     const data = cases.unsafe;
+//     const scanResultComment = await testTheScanner(data);
+//     expect(scanResultComment).toBeDefined();
+//     expect(scanResultComment.body).toBeDefined();
+
+//     const actual = JSON.parse(scanResultComment.body);
+//     const expected = data.map(image => ({image, 'status': 'UNSAFE'}));
+//     expected.forEach(given => {
+//         for (const [key, value] of Object.entries(given)) {
+//             if (key === 'image') {
+//                 const found = actual.find(a => a.image === value);
+//                 expect( found).toBeDefined();
+//                 expect( found.status ).toEqual('UNSAFE');
+//             }
+//         }
 //     });
-
-//     // wait 45 seconds
-//     await delay({until: 45000});
-
-//     // scanned.json
-//     const filePath = '../scanned.json';
-//     const outputExists = await fileExists(filePath);
-//     expect(outputExists).toBe(true);
-
-//     const output = require(filePath);
-//     const expected = cases.unsafe.map(c => ({'image': c, 'status': 'SAFE'}));
-//     expect(output).toStrictEqual(expected);
 // });
 
 // maybe('GitHub Workflow - Scan identifies safe and unsafe images', async () => {
