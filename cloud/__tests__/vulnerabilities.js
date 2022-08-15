@@ -5,11 +5,6 @@ const properties = require('../../../properties.json');
 
 dotenv.config();
 
-// const properties = {
-//     githubUsername: process.env.githubUsername,
-//     deployedAppURL: process.env.deployedAppURL
-// };
-
 let repo;
 let owner;
 let octokit;
