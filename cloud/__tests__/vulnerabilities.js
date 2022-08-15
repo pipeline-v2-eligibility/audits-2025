@@ -114,43 +114,21 @@ maybe('GitHub Workflow - Scan identifies safe images', async () => {
     });
 });
 
-// maybe('GitHub Workflow - Scan identifies unsafe images', async () => {
-//     const data = cases.unsafe;
-//     const scanResultComment = await testTheScanner(data);
-//     expect(scanResultComment).toBeDefined();
-//     expect(scanResultComment.body).toBeDefined();
+maybe('GitHub Workflow - Scan identifies unsafe images', async () => {
+    const data = cases.unsafe;
+    const scanResultComment = await testTheScanner(data);
+    expect(scanResultComment).toBeDefined();
+    expect(scanResultComment.body).toBeDefined();
 
-//     const actual = JSON.parse(scanResultComment.body);
-//     const expected = data.map(image => ({image, 'status': 'UNSAFE'}));
-//     expected.forEach(given => {
-//         for (const [key, value] of Object.entries(given)) {
-//             if (key === 'image') {
-//                 const found = actual.find(a => a.image === value);
-//                 expect( found).toBeDefined();
-//                 expect( found.status ).toEqual('UNSAFE');
-//             }
-//         }
-//     });
-// });
-
-// maybe('GitHub Workflow - Scan identifies safe and unsafe images', async () => {
-    
-//     await octokit.request(`POST /repos/{${owner}}/{${repo}}/issues`, {
-//         owner: owner,
-//         repo: repo,
-//         title: `Scan @ ${(new Date()).toUTCString()}`,
-//         body: [...cases.safe, ...cases.unsafe]
-//     });
-
-//     // wait 45 seconds
-//     await delay({until: 45000});
-
-//     // scanned.json
-//     const filePath = '../scanned.json';
-//     const outputExists = await fileExists(filePath);
-//     expect(outputExists).toBe(true);
-
-//     const output = require(filePath);
-//     const expected = cases.unsafe.map(c => ({'image': c, 'status': 'SAFE'}));
-//     expect(output).toStrictEqual(expected);
-// });
+    const actual = JSON.parse(scanResultComment.body);
+    const expected = data.map(image => ({image, 'status': 'UNSAFE'}));
+    expected.forEach(given => {
+        for (const [key, value] of Object.entries(given)) {
+            if (key === 'image') {
+                const found = actual.find(a => a.image === value);
+                expect( found).toBeDefined();
+                expect( found.status ).toEqual('UNSAFE');
+            }
+        }
+    });
+});
