@@ -1,5 +1,5 @@
 const axios = require('axios');
-const properties = require('../../../properties.json');
+const about = require('../../../about.json');
 
 let cases = [];
 let maybe = test.skip;
@@ -11,9 +11,9 @@ const delay = ({until: timeout}) => new Promise((resolve) => {
     }, timeout);
 });
 
-if (properties && properties.deployedAppURL && properties.deployedAppURL !== '') {
+if (about && about.deployedAppURL && about.deployedAppURL !== '') {
     maybe = test;
-    axios.defaults.baseURL = properties.deployedAppURL;
+    axios.defaults.baseURL = about.deployedAppURL;
 }
 
 const getRandomTestData = async () => {

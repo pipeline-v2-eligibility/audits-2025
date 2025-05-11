@@ -1,7 +1,7 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
 const { Octokit } = require("@octokit/rest");
-const properties = require('../../../properties.json');
+const about = require('../../../about.json');
 
 dotenv.config();
 
@@ -20,11 +20,11 @@ const delay = ({ until: timeout }) => new Promise((resolve) => {
     }, timeout);
 });
 
-if (properties && properties.deployedAppURL && properties.deployedAppURL !== '' && properties.githubUsername && properties.githubUsername !== '') {
+if (about && about.deployedAppURL && about.deployedAppURL !== '' && about.githubUsername && about.githubUsername !== '') {
     maybe = test;
 
-    repo = properties.deployedAppURL;
-    owner = properties.githubUsername;
+    repo = about.deployedAppURL;
+    owner = about.githubUsername;
     octokit = new Octokit({
         auth: process.env.GH_TOKEN
     });
