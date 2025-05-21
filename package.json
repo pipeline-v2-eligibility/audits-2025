@@ -2,8 +2,8 @@
   "name": "gradr-audits",
   "type": "module",
   "scripts": {
-    "audit-cloud": "NODE_ENV=test vitest run --outputFile=cloud/stats.json",
-    "audit-backend": "NODE_ENV=test vitest run --outputFile=backend/stats.json"
+    "audit-cloud": "NODE_ENV=test TEST_STATS_DIR=cloud vitest run",
+    "audit-backend": "NODE_ENV=test TEST_STATS_DIR=backend vitest run"
   },
   "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72",
   "dependencies": {
