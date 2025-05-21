@@ -1,18 +1,22 @@
 {
+  "name": "gradr-audits",
+  "type": "module",
   "scripts": {
-    "audit-cloud": "jest --runInBand --json --rootDir=cloud --outputFile=cloud/stats.json --noStackTrace --colors",
-    "audit-backend": "jest --runInBand --json --rootDir=backend --outputFile=backend/stats.json --noStackTrace --colors",
-    "audit-frontend": "npx playwright test",
-    "frontend-install-playwright": "npx playwright install --with-deps chromium"
+    "audit-cloud": "NODE_ENV=test vitest run --outputFile=cloud/stats.json",
+    "audit-backend": "NODE_ENV=test vitest run --outputFile=backend/stats.json"
   },
+  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72",
   "dependencies": {
-    "@octokit/rest": "^19.0.3",
-    "@playwright/test": "^1.24.2",
-    "axios": "^0.27.2",
-    "dotenv": "^16.0.1",
-    "fs.promises.exists": "^1.1.3",
-    "jest": "^28.1.3",
-    "octokit": "^2.0.4"
+    "@octokit/rest": "^21.1.1",
+    "@total-typescript/tsconfig": "^1.0.4",
+    "axios": "^1.9.0",
+    "dotenv": "^16.5.0",
+    "fs.promises.exists": "^1.1.4",
+    "octokit": "^5.0.2",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4"
   },
-  "packageManager": "yarn@1.22.21+sha1.1959a18351b811cdeedbd484a8f86c3cc3bbaf72"
+  "devDependencies": {
+    "@types/node": "^22.15.21"
+  }
 }
